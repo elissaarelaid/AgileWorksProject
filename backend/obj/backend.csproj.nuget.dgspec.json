@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Elis Saarelaid\\Desktop\\Project\\backend\\backend.csproj": {}
+    "c:\\Users\\Elis Saarelaid\\Desktop\\Project\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Elis Saarelaid\\Desktop\\Project\\backend\\backend.csproj": {
+    "c:\\Users\\Elis Saarelaid\\Desktop\\Project\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Elis Saarelaid\\Desktop\\Project\\backend\\backend.csproj",
+        "projectUniqueName": "c:\\Users\\Elis Saarelaid\\Desktop\\Project\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Users\\Elis Saarelaid\\Desktop\\Project\\backend\\backend.csproj",
+        "projectPath": "c:\\Users\\Elis Saarelaid\\Desktop\\Project\\backend\\backend.csproj",
         "packagesPath": "C:\\Users\\Elis Saarelaid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Elis Saarelaid\\Desktop\\Project\\backend\\obj\\",
+        "outputPath": "c:\\Users\\Elis Saarelaid\\Desktop\\Project\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Elis Saarelaid\\AppData\\Roaming\\NuGet\\NuGet.Config",
