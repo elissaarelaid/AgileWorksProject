@@ -19,8 +19,8 @@
                         <tr v-for="(application, index) in applications" :key="index">
                             <td>{{ application.id }}</td>
                             <td>{{ application.description }}</td>
-                            <td>{{ application.entryDate }}</td>
-                            <td>{{ application.resolutionDate }}</td>
+                            <td>{{ formatDate(application.entryDate) }}</td>
+                            <td>{{ formatDate(application.resolutionDate) }}</td>
                             <td>{{ application.isSolved ? 'Solved' : 'Pending' }}</td>
                         </tr>
                     </tbody>
@@ -33,10 +33,21 @@
 <script setup lang="ts">
 import { useApplicationsStore } from '@/stores/applicationsStore';
 import { onMounted } from 'vue';
+import moment from 'moment'
+
+
+function formatDate(value: any) {
+    if (value) {
+        return moment(String(value)).format('MM/DD/YYYY hh:mm')
+    }
+}
+
+
 defineProps<{ title: String }>();
 
-
 const { applications, loadApplications } = useApplicationsStore();
+
+
 
 onMounted(async () => {
     await loadApplications();
