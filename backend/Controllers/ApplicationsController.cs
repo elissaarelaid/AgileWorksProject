@@ -16,7 +16,9 @@ namespace backend.Controllers
         
         [HttpGet]
         public IActionResult GetApplications() {
-            return Ok(_context.Applications);
+            return Ok(_context.Applications?
+                    .Where(a => a.IsSolved == false)
+                    .OrderByDescending(a => a.ResolutionDate).ToList());
         }
     }
 }

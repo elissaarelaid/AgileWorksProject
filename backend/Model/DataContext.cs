@@ -19,17 +19,33 @@ namespace backend.Model
                 new Application {
                     Id = 1,
                     Description = "Application1",
-                    EntryDate = DateTime.Now
+                    EntryDate = DateTime.Now,
+                    ResolutionDate = new DateTime(2024,12,12),
+                    IsSolved = true
                 },
                 new Application {
                     Id = 2,
                     Description = "Application2",
-                    EntryDate = DateTime.Now
+                    EntryDate = DateTime.Now,
+                    ResolutionDate = new DateTime(2029,12,12)
                 },
                  new Application {
                     Id = 3,
-                    Description = "Application2",
-                    EntryDate = DateTime.Now
+                    Description = "Application3",
+                    EntryDate = DateTime.Now,
+                    ResolutionDate = new DateTime(2028,12,12)
+                },
+                new Application {
+                    Id = 4,
+                    Description = "Application4",
+                    EntryDate = DateTime.Now,
+                    ResolutionDate = new DateTime(2026,12,12)
+                },
+                 new Application {
+                    Id = 5,
+                    Description = "Application5",
+                    EntryDate = DateTime.Now,
+                    ResolutionDate = new DateTime(2030,12,12)
                 }
             );
         }

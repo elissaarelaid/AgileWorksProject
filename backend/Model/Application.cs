@@ -12,7 +12,7 @@ namespace backend.Model
         [Column("entry_date")]
         public DateTime EntryDate  { get; set; }
         [Column("resolution_date")]
-        public DateTime? ResolutionDate { get; set; } 
+        public DateTime ResolutionDate { get; set; } 
         [Column("is_solved")]
         public bool IsSolved { get; set; } = false;
     }
