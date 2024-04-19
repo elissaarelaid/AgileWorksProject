@@ -1,6 +1,6 @@
 import { Ref, ref } from 'vue';
 
-export type ApiRequest<T> = () => Promise<T>; // Update to return data
+export type ApiRequest<T> = (options?: RequestInit) => Promise<T>; // Update to return data
 
 export interface UseableApi<T> {
   response: Ref<T | undefined>;
@@ -15,11 +15,10 @@ export function setApiUrl(url: string) {
 
 export default function useApi<T>(
   url: RequestInfo,
-  options?: RequestInit
 ): UseableApi<T> {
   const response: Ref<T | undefined> = ref();
 
-  const request: ApiRequest<T> = async () => {
+  const request: ApiRequest<T> = async (options?: RequestInit) => {
     try {
       const fetchResponse = await fetch(`${apiUrl}/api/${url}`, options);
       if (!fetchResponse.ok) {

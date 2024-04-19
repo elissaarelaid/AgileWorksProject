@@ -8,20 +8,24 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <!-- <th>ID</th> -->
                             <th>Application Description</th>
                             <th>Entry Date</th>
                             <th>Resolution Date</th>
-                            <th>Status</th>
+                            <!-- <th>Status</th> -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="(application, index) in applications" :key="index">
-                            <td>{{ application.id }}</td>
+                            <!-- <td>{{ application.id }}</td> -->
                             <td>{{ application.description }}</td>
                             <td>{{ formatDate(application.entryDate) }}</td>
                             <td>{{ formatDate(application.resolutionDate) }}</td>
-                            <td>{{ application.isSolved ? 'Solved' : 'Pending' }}</td>
+                            <!-- <td>{{ application.isSolved ? 'Solved' : 'Pending' }}</td> -->
+                            <td>
+                              <button class="button" @click="updateApplicationStatus(application)">
+                                Solve</button>
+                            </td> <!-- Place the button in a new column -->
                         </tr>
                     </tbody>
                 </table>
@@ -34,7 +38,10 @@
 import { useApplicationsStore } from '@/stores/applicationsStore';
 import { onMounted } from 'vue';
 import moment from 'moment'
-
+import { Application } from '@/modules/application';
+import { storeToRefs } from 'pinia';
+const applicationsStore = useApplicationsStore();
+const { applications } = storeToRefs(applicationsStore);
 
 function formatDate(value: any) {
     if (value) {
@@ -45,14 +52,17 @@ function formatDate(value: any) {
 
 defineProps<{ title: String }>();
 
-const { applications, loadApplications } = useApplicationsStore();
-
-
+const updateApplicationStatus = async (application: Application) => {
+   const updatedApplication = await applicationsStore.changeApplicationStatus(application.id);
+   if (updatedApplication) {
+      applicationsStore.load();
+   }
+};
 
 onMounted(async () => {
-    await loadApplications();
-   //console.log("Data in component:", applications.value); 
+    applicationsStore.load();
 });
+
 </script>
 
 <style>
@@ -99,6 +109,15 @@ onMounted(async () => {
   .table tbody tr:last-child td {
     border-bottom: none; /* No border for the last row */
 }
+
+  .button {
+    background-color: #336137;
+    color: #ffffff;
+    padding: 5px 8px;
+    text-align: center;
+    font-size: 15px;
+    margin-left: 30px;
+  }
 
   @media (max-width: 600px) {
     .card {

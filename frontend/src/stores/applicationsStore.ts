@@ -5,18 +5,40 @@ import { Application } from '@/modules/application';
 
 export const useApplicationsStore = defineStore('applicationsStore', () => {
     const applications: Ref<Application[] | undefined> = ref();
+    
+      let allApplications: Application[] = [];
 
-    const loadApplications = async () => {
-      const { request, response } = useApi<Application[]>('applications');
+      const loadApplications = async () => {
+        const apiGetApplications = useApi<Application[]>('Applications');
+    
+        await apiGetApplications.request();
+    
+        if (apiGetApplications.response.value) {
+          return apiGetApplications.response.value!;
+        }
+    
+        return [];
+      };
+    
+      const load = async () => {
+        allApplications = await loadApplications();
+        applications.value = allApplications;
+      };
 
-      try {
-        await request(); // This fetches and updates the response ref
-        applications.value = response.value; // Use the updated ref
-        console.log("Applications loaded:", applications.value);
-      } catch (error) {
-        console.error("Failed to load applications:", error);
-      }
+
+    const changeApplicationStatus = async (id: number): Promise<Application | null> => {
+      const apiUpdateApplicationStatus = useApi<Application>(`Applications/${id}`);
+      const options = {
+        method: 'PUT'
     };
+      await apiUpdateApplicationStatus.request(options);
+    
+      if (apiUpdateApplicationStatus.response.value) {
+        return apiUpdateApplicationStatus.response.value;
+      } 
+      console.log("Method");
+      return null;
+    }
 
-    return { applications, loadApplications };
+    return { applications, load, changeApplicationStatus };
 });
