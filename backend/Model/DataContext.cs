@@ -20,8 +20,8 @@ namespace backend.Model
                     Id = 1,
                     Description = "Application1",
                     EntryDate = DateTime.Now,
-                    ResolutionDate = new DateTime(2024,12,12),
-                    IsSolved = true
+                    ResolutionDate = new DateTime(2023,4,12),
+                    IsSolved = false
                 },
                 new Application {
                     Id = 2,
@@ -33,7 +33,7 @@ namespace backend.Model
                     Id = 3,
                     Description = "Application3",
                     EntryDate = DateTime.Now,
-                    ResolutionDate = new DateTime(2028,12,12)
+                    ResolutionDate = DateTime.Now.AddHours(1)
                 },
                 new Application {
                     Id = 4,

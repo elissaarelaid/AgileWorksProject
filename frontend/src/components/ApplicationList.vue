@@ -16,7 +16,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(application, index) in applications" :key="index">
+                        <tr v-for="(application, index) in applications" :key="index" :class="getRowClass(application)"> 
                             <!-- <td>{{ application.id }}</td> -->
                             <td>{{ application.description }}</td>
                             <td>{{ formatDate(application.entryDate) }}</td>
@@ -25,8 +25,8 @@
                             <td>
                               <button class="button" @click="updateApplicationStatus(application)">
                                 Solve</button>
-                            </td> <!-- Place the button in a new column -->
-                        </tr>
+                            </td> 
+                          </tr>
                     </tbody>
                 </table>
             </div>
@@ -51,6 +51,23 @@ function formatDate(value: any) {
 
 
 defineProps<{ title: String }>();
+
+function addHours(date: Date, hours: number): Date {
+  const hoursToAdd = hours * 60 * 60 * 1000;
+  date.setTime(date.getTime() + hoursToAdd);
+  return date;
+}
+
+function parseDateStringToDate(value: string | undefined): Date {
+    return new Date(value);
+}
+
+function getRowClass(application : Application): string { //make red if is only 1 hour left until resolution date or resolution date is past
+  const currentDate = new Date();
+  console.log(addHours(parseDateStringToDate(formatDate(application.resolutionDate)), -1))
+  console.log(parseDateStringToDate(formatDate(currentDate)))
+  return addHours(parseDateStringToDate(formatDate(application.resolutionDate)), -1) <= parseDateStringToDate(formatDate(currentDate)) ? 'bg-red-300' : 'bg-white';
+}
 
 const updateApplicationStatus = async (application: Application) => {
    const updatedApplication = await applicationsStore.changeApplicationStatus(application.id);
