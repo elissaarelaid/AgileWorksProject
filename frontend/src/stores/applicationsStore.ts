@@ -36,9 +36,28 @@ export const useApplicationsStore = defineStore('applicationsStore', () => {
       if (apiUpdateApplicationStatus.response.value) {
         return apiUpdateApplicationStatus.response.value;
       } 
-      console.log("Method");
-      return null;
-    }
 
-    return { applications, load, changeApplicationStatus };
+      return null;
+    };
+
+    const addApplication = async (application: Application) => {
+      const apiAddApplication = useApi<Application>('Applications');
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(application),
+        headers: {
+          'Content-Type': 'application/json' 
+        },
+      };
+      
+      await apiAddApplication.request(options);
+
+      if (apiAddApplication.response.value) {
+        allApplications.push(apiAddApplication.response.value!);
+        applications.value = allApplications;
+      }
+    };
+
+
+    return { applications, load, changeApplicationStatus, addApplication };
 });

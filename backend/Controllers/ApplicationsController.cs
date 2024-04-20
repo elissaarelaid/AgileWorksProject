@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using backend.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,6 +26,17 @@ namespace backend.Controllers
             applicationToChange.IsSolved = true;
             _context.SaveChanges();
             return Ok(applicationToChange);
+        }
+
+        [HttpPost]
+        public IActionResult AddApplication([FromBody] Application application) {
+            if (_context.Applications!.Find(application.Id) != null) {
+                return BadRequest();
+            }
+            application.EntryDate = DateTime.Now;
+            _context.Applications!.Add(application);
+            _context.SaveChanges();
+            return Ok(new {application});
         }
     }
 }

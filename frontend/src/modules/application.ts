@@ -1,8 +1,8 @@
 export interface Application {
     id: number;
     description: string;
-    entryDate: Date;
-    resolutionDate: Date;
+    entryDate: string;
+    resolutionDate: string;
     isSolved: boolean
 }
 
