@@ -1,5 +1,5 @@
 <template>
-      <div class="title"> {{ title }}</div> 
+      <div class="titleclass"> {{ title }}</div> 
         <div class="card">
           <div class="table">
             <div class="card-body">
@@ -75,13 +75,13 @@ onMounted(async () => {
 </script>
 
 <style>
-  .title {
-    font-size: 1.5rem; 
+  .titleclass {
+    font-size: 1.7rem; 
     font-weight: bold;
     color: #333; 
     padding-bottom: 10px;
     margin-bottom: 20px; 
-    padding-top: 5%;
+    padding-top: 3%;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
   }
 
@@ -91,7 +91,7 @@ onMounted(async () => {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     padding: 20px; 
     margin: 20px; 
-    border-top: 2px solid #eff1ef; /* Thick dark green top border */
+    border-top: 2px solid #eff1ef; 
 }
 
   .table{
@@ -114,38 +114,53 @@ onMounted(async () => {
     box-shadow: 0 2px 5px rgba(69, 69, 69, 0.1); 
   }
 
-  .table tr:hover {
-    background-color: #c5c5c536; 
+
+  .bg-white {
+    background-color: #ffffff;
   }
 
-  .table tbody tr:last-child td {
-    border-bottom: none; 
-}
+  .bg-red-300 {
+    background-color: #e68d8dca; 
+  }
 
-  .button {
-    background-color: #336137;
-    color: #ffffff;
-    padding: 5px 8px;
-    text-align: center;
-    font-size: 15px;
-    margin-left: 30px;
-    border: #101010;
-    border-radius: 8px;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
-}
 
-.button:hover {
-  background-color: #284528; 
-  color: #ffffff; 
-  border-color: #f5f4f4;
-}
+  .bg-white:hover {
+    background-color: #e1dfdfde; 
+  }
 
-  @media (max-width: 600px) {
-    .card {
-        margin: 10px;
-    }
-    .table th, .table td {
-        padding: 10px; 
-    }
-}
+  .bg-red-300:hover {
+    background-color: #b96969ba; 
+  }
+
+
+    .table tbody tr:last-child td {
+      border-bottom: none; 
+  }
+
+    .button {
+      background-color: #336137;
+      color: #ffffff;
+      padding: 5px 8px;
+      text-align: center;
+      font-size: 15px;
+      margin-left: 30px;
+      border: #101010;
+      border-radius: 8px;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
+  }
+
+  .button:hover {
+    background-color: #284528; 
+    color: #ffffff; 
+    border-color: #f5f4f4;
+  }
+
+    @media (max-width: 600px) {
+      .card {
+          margin: 10px;
+      }
+      .table th, .table td {
+          padding: 10px; 
+      }
+  }
 </style>

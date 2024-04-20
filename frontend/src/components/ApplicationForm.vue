@@ -7,7 +7,7 @@
             <div>
               <label class="text" for="Description">Description </label>
               <textarea id="Description" name="Description"
-                v-model="description" placeholder="" />
+                v-model="description" placeholder=""/>
             </div>
             <div class="form-group">
             <label class="text" for="date">Resolution Date </label>
@@ -85,7 +85,8 @@
     padding: 20px; 
     margin: 20px; 
     margin-bottom: 5px;
-    width: 500px
+    width:100%;
+    max-width: 500px;
 }
 
   .form-group {
@@ -118,7 +119,7 @@
     text-align: center;
     font-size: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    border: 2px solid #898b89; /* Dark green border */
+    border: 2px solid #898b89; 
     border-radius: 8px; 
     transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
 }
@@ -141,12 +142,29 @@
 }
 
 
-/* @media (max-width: 600px) {
-    .formcard {
-        margin: 10px;
-    }
-    .table th, .table td {
-        padding: 10px; 
-    }
-  } */
+@media (max-width: 600px) {
+  .formcard {
+    margin: 10px; 
+    padding: 10px; 
+  }
+
+  .title {
+    font-size: 1.2rem; 
+    padding-top: 2%;
+  }
+
+  .text, .formbutton {
+    font-size: 14px; 
+  }
+
+  .formbutton {
+    padding: 10px 20px; 
+  }
+
+  input[type="date"], 
+  input[type="time"], 
+  textarea, 
+  .formbutton {
+    padding: 8px;
+  }}
 </style>

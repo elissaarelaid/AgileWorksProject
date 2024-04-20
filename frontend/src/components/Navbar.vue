@@ -1,8 +1,15 @@
 <template>
     <nav>
-      <div class="logo">ApplicationApp</div>
-      <ul>
-      </ul>
+      <router-link
+                to="/"
+                class="logo hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                active-class="bg-black"
+                >ApplicationApp</router-link>
+              <router-link
+                to="/add"
+                class="text hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                active-class="bg-black"
+                >Add new application</router-link>
     </nav>
   </template>
   
@@ -14,46 +21,34 @@
   
   <style scoped>
   nav {
-    background-color: #333; /* Dark background for a modern look */
-    color: #fff; /* White text color */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+    background-color: #333; 
+    color: #fff; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    display: flex; /* Use flexbox for better alignment */
-    justify-content: space-between; /* Space between logo and navigation links */
-    padding: 0 20px; /* Padding on both sides */
-    align-items: center; /* Align items vertically */
-    height: 60px; /* Fixed height */
+    display: flex; 
+    justify-content: space-between; 
+    padding: 0 20px; 
+    align-items: center; 
+    height: 60px; 
     z-index: 1000;
   }
   
   .logo {
-    font-size: 24px; /* Larger font size for logo */
-    font-weight: bold; /* Make logo bold */
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-size: 24px; 
+    font-weight: bold; 
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:azure
   }
-  
-    nav ul {
-        list-style-type: none;
-        display: flex; /* Display links in a row */
-        align-items: center; /* Align links vertically */
-        margin: 0; /* Remove default margin */
-    }
-    
-    nav ul li {
-        margin: 0 15px; /* Space between links */
-    }
-    
-    router-link {
-        color: #fff; /* White text color for links */
-        text-decoration: none; /* No underline */
-        transition: color 0.3s ease; /* Smooth transition for hover effect */
-    }
-    
-    router-link:hover {
-        color: #4CAF50; /* Green color on hover */
-    }
+
+  .text{
+    font-size: 13px; 
+    font-weight: bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:azure
+  }
+
   </style>
   
