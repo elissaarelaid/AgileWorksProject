@@ -1,34 +1,26 @@
 <template>
-    <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-md w-full space-y-8">
-        <div class="text-center text-2xl font-semibold mb-4"> {{ title }}</div> 
-        <form class="space-y-6">
-          <div class="rounded-md shadow-sm -space-y-px">
+    <div>
+      <div>
+        <div class="title"> {{ title }}</div> 
+        <form class="formcard">
+          <div>
             <div>
-              <label for="Description">Description</label>
-              <input
-                id="Description"
-                name="Description"
-                v-model="description"
-                placeholder=""
-              />
+              <label class="text" for="Description">Description </label>
+              <textarea id="Description" name="Description"
+                v-model="description" placeholder="" />
             </div>
             <div class="form-group">
-            <label for="date">Resolution Date</label>
+            <label class="text" for="date">Resolution Date </label>
             <input type="date" id="date" v-model="resDate" required>
           </div>
           <div class="form-group">
-            <label for="time">Resolution Time</label>
+            <label class="text" for="time">Resolution Time </label>
             <input type="time" id="time" v-model="resTime" required>
           </div>
           </div>
           <div>
-            <button
-            @click.prevent="submitForm"
-              class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-400 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-              </span>
+            <button class="formbutton"
+            @click.prevent="submitForm">
               Add application
             </button>
           </div>
@@ -73,3 +65,88 @@
       router.push({ name: 'Applications' });
     };
     </script>
+
+<style>
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold; 
+    color: #333; 
+    padding-bottom: 10px;
+    margin-bottom: 20px; 
+    padding-top: 5%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  }
+
+  
+  .formcard {
+    background-color: #d7e2d7; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    padding: 20px; 
+    margin: 20px; 
+    margin-bottom: 5px;
+    width: 500px
+}
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .text {
+    color:#364a38;
+    font-weight: bold; 
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: block;
+    text-align: left;
+  }
+
+  input[type="date"],
+  input[type="time"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+  }
+
+  .formbutton {
+    background-color: #364a38;
+    color: #f5f4f4;
+    padding: 5px 100px;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    border: 2px solid #898b89; /* Dark green border */
+    border-radius: 8px; 
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
+}
+
+.formbutton:hover {
+  background-color: #2c382c; 
+  color: #ffffff; 
+  border-color: #f5f4f4;
+}
+
+  textarea {
+  width: 100%;
+  padding: 10px; 
+  box-sizing: border-box;
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  resize: vertical; 
+  background-color: #fff; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+
+/* @media (max-width: 600px) {
+    .formcard {
+        margin: 10px;
+    }
+    .table th, .table td {
+        padding: 10px; 
+    }
+  } */
+</style>

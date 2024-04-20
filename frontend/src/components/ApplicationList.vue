@@ -1,27 +1,21 @@
 <template>
-    <div class="card">
-        <div class="table">
-            <div class="title">
-                <h4 >{{ title }}</h4>    
-            </div>
+      <div class="title"> {{ title }}</div> 
+        <div class="card">
+          <div class="table">
             <div class="card-body">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <!-- <th>ID</th> -->
                             <th>Application Description</th>
                             <th>Entry Date</th>
                             <th>Resolution Date</th>
-                            <!-- <th>Status</th> -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(application, index) in applications" :key="index" :class="getRowClass(application)"> 
-                            <!-- <td>{{ application.id }}</td> -->
+                      <tr v-for="application in applications" :key="application.id" :class="getRowClass(application)"> 
                             <td>{{ application.description }}</td>
                             <td>{{ formatDate(application.entryDate) }}</td>
                             <td>{{ formatDate(application.resolutionDate) }}</td>
-                            <!-- <td>{{ application.isSolved ? 'Solved' : 'Pending' }}</td> -->
                             <td>
                               <button class="button" @click="updateApplicationStatus(application)">
                                 Solve</button>
@@ -64,45 +58,46 @@ function parseDateStringToDate(value: string | undefined): Date {
 
 function getRowClass(application : Application): string { //make red if is only 1 hour left until resolution date or resolution date is past
   const currentDate = new Date();
-  console.log(addHours(parseDateStringToDate(formatDate(application.resolutionDate)), -1))
-  console.log(parseDateStringToDate(formatDate(currentDate)))
   return addHours(parseDateStringToDate(formatDate(application.resolutionDate)), -1) <= parseDateStringToDate(formatDate(currentDate)) ? 'bg-red-300' : 'bg-white';
 }
 
 const updateApplicationStatus = async (application: Application) => {
    const updatedApplication = await applicationsStore.changeApplicationStatus(application.id);
    if (updatedApplication) {
-      applicationsStore.load();
+      await applicationsStore.load();
    }
 };
 
 onMounted(async () => {
-    applicationsStore.load();
+    await applicationsStore.load();
 });
 
 </script>
 
 <style>
   .title {
-    font-size: 1.5rem; /* Larger font size for logo */
-    font-weight: bold; /* Bold font for emphasis */
-    color: #333; /* Dark gray for text for better readability */
-    padding-bottom: 20px; /* Space below the logo/header */
+    font-size: 1.5rem; 
+    font-weight: bold;
+    color: #333; 
+    padding-bottom: 10px;
     margin-bottom: 20px; 
+    padding-top: 5%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
   }
 
   .card {
-    background-color: #fff; /* White background */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);/* Subtle shadow for depth */
-    padding: 20px; /* Padding inside the card */
-    margin: 20px; /* Margin around the card */
+    background-color: #fff; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px; 
+    margin: 20px; 
+    border-top: 2px solid #eff1ef; /* Thick dark green top border */
 }
 
   .table{
     width: 100%;
     border-collapse: collapse; 
-    table-layout: fixed; /*equal column width*/
+    table-layout: fixed; 
   }
 
   .table th,
@@ -114,17 +109,17 @@ onMounted(async () => {
 
   .table th {
     background-color: #d3d2d2ad;
-    color: #333; /* Dark text for contrast */
+    color: #333; 
     font-weight: 650; 
     box-shadow: 0 2px 5px rgba(69, 69, 69, 0.1); 
   }
 
   .table tr:hover {
-    background-color: #c5c5c536; /*hover color*/ 
+    background-color: #c5c5c536; 
   }
 
   .table tbody tr:last-child td {
-    border-bottom: none; /* No border for the last row */
+    border-bottom: none; 
 }
 
   .button {
@@ -134,7 +129,16 @@ onMounted(async () => {
     text-align: center;
     font-size: 15px;
     margin-left: 30px;
-  }
+    border: #101010;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
+}
+
+.button:hover {
+  background-color: #284528; 
+  color: #ffffff; 
+  border-color: #f5f4f4;
+}
 
   @media (max-width: 600px) {
     .card {

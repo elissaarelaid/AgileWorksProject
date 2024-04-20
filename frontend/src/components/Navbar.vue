@@ -32,6 +32,7 @@
   .logo {
     font-size: 24px; /* Larger font size for logo */
     font-weight: bold; /* Make logo bold */
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
   }
   
     nav ul {
