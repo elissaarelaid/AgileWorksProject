@@ -23,6 +23,9 @@ namespace backend.Controllers
             if (applicationToChange == null) {
                 return NotFound("Application not found");
             }
+            if (applicationToChange.IsSolved == true) {
+                return BadRequest("Application is already solved");
+            }
             applicationToChange.IsSolved = true;
             _context.SaveChanges();
             return Ok(applicationToChange);
@@ -31,12 +34,23 @@ namespace backend.Controllers
         [HttpPost]
         public IActionResult AddApplication([FromBody] Application application) {
             if (_context.Applications!.Find(application.Id) != null) {
-                return BadRequest();
+                return BadRequest("There is already an application with this id");
+            }
+            if (string.IsNullOrEmpty(application.Description) || application.Description.Length > 500) {
+                return BadRequest("Description length must be between 1 and 500 characters");
             }
             application.EntryDate = DateTime.Now;
-            _context.Applications!.Add(application);
+            if (application.ResolutionDate < DateTime.Now) { 
+                return BadRequest("Resolution date cannot be past");
+            }
+            _context.Applications.Add(application);
             _context.SaveChanges();
-            return Ok(new {application});
+            return Ok(new ApiResponse { Application = application });
         }
+    }
+
+    public class ApiResponse
+    {
+        public Application Application { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace backend.Model
@@ -7,8 +8,11 @@ namespace backend.Model
     {
         [Column("id")]
         public int Id { get; set; }
+
         [Column("description")]
-        public required string Description { get; set; } = "";
+        [Required]
+        [MaxLength(500)]
+        public string? Description { get; set; }
         [Column("entry_date")]
         public DateTime EntryDate  { get; set; }
         [Column("resolution_date")]
