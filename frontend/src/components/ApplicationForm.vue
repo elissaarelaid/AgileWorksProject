@@ -33,24 +33,38 @@
     import { useApplicationsStore } from '@/stores/applicationsStore';
     import { ref } from 'vue';
     import { useRouter } from 'vue-router';
-
-    defineProps<{ title: String }>();
-
     const { addApplication } = useApplicationsStore();
     const router = useRouter();
+
+    defineProps<{ title: String }>();
 
     const description = ref('');
     const resDate = ref('');
     const resTime = ref('');
     
     const submitForm = () => {
-      
-      const resolutionDateTimeString = `${resDate.value}T${resTime.value}:00.000Z`;
-      const dateNow = new Date();
-      const entDate = dateNow.toISOString().split('T')[0]; 
-      const entTime = dateNow.toTimeString().split(' ')[0]; 
-      const formattedEntryDate = `${entDate}T${entTime}.000Z`;
 
+      if (!description.value || !resDate.value || !resTime.value) {
+      alert('Please fill all fields');
+      return;
+    }
+  
+      const resolutionDateTimeString = `${resDate.value}T${resTime.value}:00.000Z`;
+
+    function formatEntryDate() {
+        const dateNow = new Date();
+        const entDate = dateNow.toISOString().split('T')[0]; 
+        const entTime = dateNow.toTimeString().split(' ')[0]; 
+        return `${entDate}T${entTime}.000Z`;
+    }
+
+      const resolutionDateTime = new Date(`${resDate.value}T${resTime.value}`);
+      if (resolutionDateTime < new Date()) {
+      alert('Resolution date cannot be in the past');
+      return;
+    }
+
+    const formattedEntryDate = formatEntryDate();
       const application = {
         id: 0,
         description: description.value,
@@ -58,8 +72,6 @@
         resolutionDate: resolutionDateTimeString,
         isSolved: false
       }
-      
-      console.log(application)
 
       addApplication(application);
       router.push({ name: 'Applications' });
@@ -121,7 +133,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     border: 2px solid #898b89; 
     border-radius: 8px; 
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
 }
 
 .formbutton:hover {

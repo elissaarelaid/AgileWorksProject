@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ziXQ1qyKkqqx9facOlTAw48IcDVcF+0PxRwavpqMA2PR8ZwpUh1dZbuerVdEBRp/NLyYNHJN4XIk1/iKAgSqpA==",
+  "dgSpecHash": "z5+09Zp5bj1A0nLtyVKP0rFbkuQnkkHXGSWj2e07uJZwHELPxFNudZXKUIS7W83Ul4xIDaUXmzP5DNG05tPkMw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Elis Saarelaid\\Desktop\\Project\\backend\\backend.csproj",
+  "projectFilePath": "c:\\Users\\Elis Saarelaid\\Desktop\\Project\\backend\\backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Elis Saarelaid\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.11\\microsoft.aspnetcore.openapi.7.0.11.nupkg.sha512",
     "C:\\Users\\Elis Saarelaid\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.18\\microsoft.entityframeworkcore.7.0.18.nupkg.sha512",

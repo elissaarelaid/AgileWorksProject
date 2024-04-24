@@ -11,6 +11,7 @@ setApiUrl('https://localhost:7220');
 const app = createApp(App);
 
 app.use(createPinia());
-app.use(router);
+app.use(router as any);
+
 
 app.mount('#app')

@@ -15,7 +15,3 @@ export default {
   }
 }
 </script>
-
-<style>
-/* Global styles */
-</style>

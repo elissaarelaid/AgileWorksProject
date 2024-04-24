@@ -31,20 +31,20 @@
 <script setup lang="ts">
 import { useApplicationsStore } from '@/stores/applicationsStore';
 import { onMounted } from 'vue';
-import moment from 'moment'
+import moment from 'moment-timezone'
 import { Application } from '@/modules/application';
 import { storeToRefs } from 'pinia';
 const applicationsStore = useApplicationsStore();
 const { applications } = storeToRefs(applicationsStore);
 
+defineProps<{ title: String }>();
+
 function formatDate(value: any) {
     if (value) {
-        return moment(String(value)).format('MM/DD/YYYY hh:mm')
+      return moment.utc(String(value)).format('MM/DD/YYYY HH:mm');
     }
+    return "";
 }
-
-
-defineProps<{ title: String }>();
 
 function addHours(date: Date, hours: number): Date {
   const hoursToAdd = hours * 60 * 60 * 1000;
@@ -53,6 +53,9 @@ function addHours(date: Date, hours: number): Date {
 }
 
 function parseDateStringToDate(value: string | undefined): Date {
+    if (!value) {
+        throw new Error("Invalid date string: cannot be undefined or empty");
+    }
     return new Date(value);
 }
 

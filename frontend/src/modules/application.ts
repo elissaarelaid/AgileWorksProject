@@ -5,7 +5,3 @@ export interface Application {
     resolutionDate: string;
     isSolved: boolean
 }
-
-export interface State{
-    applications: Application[];
-}
