@@ -23,12 +23,12 @@ namespace backend.Controllers
             if (applicationToChange == null) {
                 return NotFound("Application not found");
             }
-            if (applicationToChange.IsSolved == true) {
+            if (applicationToChange.IsSolved) {
                 return BadRequest("Application is already solved");
             }
             applicationToChange.IsSolved = true;
             _context.SaveChanges();
-            return Ok(applicationToChange);
+            return Ok(new ApiResponse { Application = applicationToChange });
         }
 
         [HttpPost]

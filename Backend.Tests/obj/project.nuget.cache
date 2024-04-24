@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "jtCI3eUn1ZGoSWDUUndl9ZXjHlpXwss+lDIjbIwS8FwqlT/1pERVP6FBBTQ5sXQQUs5OPopE+h9d9NrYpvK/Ng==",
+  "dgSpecHash": "7uW8LYd3MCu5+mMNHMjk+8olWxS98GV+CIGUL5RfpvEkNIcLSLHB8qfAuf0ePSHd06IWQ2HoOkMARHIcF2vogg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Elis Saarelaid\\Desktop\\Project\\Backend.Tests\\Backend.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Elis Saarelaid\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Elis Saarelaid\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
+    "C:\\Users\\Elis Saarelaid\\.nuget\\packages\\coverlet.msbuild\\6.0.2\\coverlet.msbuild.6.0.2.nupkg.sha512",
     "C:\\Users\\Elis Saarelaid\\.nuget\\packages\\fluentassertions\\6.12.0\\fluentassertions.6.12.0.nupkg.sha512",
     "C:\\Users\\Elis Saarelaid\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.11\\microsoft.aspnetcore.openapi.7.0.11.nupkg.sha512",
     "C:\\Users\\Elis Saarelaid\\.nuget\\packages\\microsoft.codecoverage\\17.7.1\\microsoft.codecoverage.17.7.1.nupkg.sha512",
