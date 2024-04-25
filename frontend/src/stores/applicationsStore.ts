@@ -55,6 +55,7 @@ export const useApplicationsStore = defineStore('applicationsStore', () => {
       if (apiAddApplication.response.value) {
         allApplications.push(apiAddApplication.response.value!);
         applications.value = [...allApplications];
+        await load();
       }
     };
 

@@ -8,6 +8,10 @@ namespace backend.Model
 
         public DbSet<Application>? Applications { get; set;}
 
+        /// <summary>
+        /// Method for adding some test data
+        /// </summary>
+        /// <param name="modelBuilder">Modelbuilder</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Application>().HasData(
@@ -16,7 +20,7 @@ namespace backend.Model
                     Description = "Application1",
                     EntryDate = DateTime.Now,
                     ResolutionDate = new DateTime(2023,4,12),
-                    IsSolved = false
+                    IsSolved = true
                 },
                 new Application {
                     Id = 2,
@@ -31,7 +35,7 @@ namespace backend.Model
                     ResolutionDate = DateTime.Now.AddHours(1)
                 },
                 new Application {
-                    Id = 4,
+                    Id = 4, 
                     Description = "Application4",
                     EntryDate = DateTime.Now,
                     ResolutionDate = new DateTime(2026,12,12)

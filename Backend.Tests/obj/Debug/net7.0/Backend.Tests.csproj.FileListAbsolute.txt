@@ -119,3 +119,4 @@ C:\Users\Elis Saarelaid\Desktop\Project\Backend.Tests\obj\Debug\net7.0\refint\Ba
 C:\Users\Elis Saarelaid\Desktop\Project\Backend.Tests\obj\Debug\net7.0\Backend.Tests.pdb
 C:\Users\Elis Saarelaid\Desktop\Project\Backend.Tests\obj\Debug\net7.0\Backend.Tests.genruntimeconfig.cache
 C:\Users\Elis Saarelaid\Desktop\Project\Backend.Tests\obj\Debug\net7.0\ref\Backend.Tests.dll
+C:\Users\Elis Saarelaid\Desktop\Project\Backend.Tests\bin\Debug\net7.0\backend.xml

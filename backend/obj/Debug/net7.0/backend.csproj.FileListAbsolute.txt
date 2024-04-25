@@ -34,3 +34,5 @@ C:\Users\Elis Saarelaid\Desktop\Project\backend\obj\Debug\net7.0\refint\backend.
 C:\Users\Elis Saarelaid\Desktop\Project\backend\obj\Debug\net7.0\backend.pdb
 C:\Users\Elis Saarelaid\Desktop\Project\backend\obj\Debug\net7.0\backend.genruntimeconfig.cache
 C:\Users\Elis Saarelaid\Desktop\Project\backend\obj\Debug\net7.0\ref\backend.dll
+c:\Users\Elis Saarelaid\Desktop\Project\backend\bin\Debug\net7.0\backend.xml
+c:\Users\Elis Saarelaid\Desktop\Project\backend\obj\Debug\net7.0\backend.xml

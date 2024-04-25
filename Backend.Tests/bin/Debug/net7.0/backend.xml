@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>backend</name>
+    </assembly>
+    <members>
+        <member name="M:backend.Controllers.ApplicationsController.GetApplications">
+            <summary>
+            Retrieves unsolved applications in descending order by resolution date
+            </summary>
+            <response code="200">Returns list of applications</response>
+            <returns>List of applications</returns>
+        </member>
+        <member name="M:backend.Controllers.ApplicationsController.SolveApplication(System.Int32)">
+            <summary>
+            Changes the status of an application with given id to true (solved) 
+            </summary>
+            <param name="id"> Id of the application which status to change </param>
+            <response code="200">Returns the newly changed application</response>
+            <response code="400">Bad request if the ID is not unique, description length is not between 1 and 500 characters, or the resolution date is in the past</response>
+            <returns> Changed application </returns>
+        </member>
+        <member name="M:backend.Controllers.ApplicationsController.AddApplication(backend.Model.Application)">
+            <summary>
+            Adds new application to the database
+            </summary>
+            <param name="application"> Application to add to the database </param>
+            <response code="200">Returns the newly added application</response>
+            <response code="400">Bad request if the ID is not unique, description length is not between 1 and 500 characters, or the resolution date is in the past</response>
+            <returns> Added application </returns>
+        </member>
+        <member name="P:backend.Model.Application.Id">
+            <summary>
+            Id of the application, automatically added by the entity framework
+            </summary>
+        </member>
+        <member name="P:backend.Model.Application.Description">
+            <summary>
+            Description of the application. Requierd filed which length cannot be longer then 500 characters
+            </summary>
+        </member>
+        <member name="P:backend.Model.Application.EntryDate">
+            <summary>
+            Date and time when application added to the database
+            </summary>
+        </member>
+        <member name="P:backend.Model.Application.ResolutionDate">
+            <summary>
+            Application's solving deadline
+            </summary>
+        </member>
+        <member name="P:backend.Model.Application.IsSolved">
+            <summary>
+            Status of the application. True if application is solved and false if it is not
+            </summary>
+        </member>
+        <member name="M:backend.Model.DataContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method for adding some test data
+            </summary>
+            <param name="modelBuilder">Modelbuilder</param>
+        </member>
+    </members>
+</doc>

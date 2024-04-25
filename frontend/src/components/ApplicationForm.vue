@@ -49,7 +49,7 @@
       return;
     }
   
-      const resolutionDateTimeString = `${resDate.value}T${resTime.value}:00.000Z`;
+    const resolutionDateTimeString = `${resDate.value}T${resTime.value}:00.000Z`;
 
     function formatEntryDate() {
         const dateNow = new Date();

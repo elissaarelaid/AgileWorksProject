@@ -66,38 +66,38 @@ namespace Backend.Tests
 
         [Fact]
         public void GetApplications_ReturnsOnlyUnsolvedApplicationsInCorrectOrder() {
-            _context.Applications.RemoveRange(_context.Applications); //et andmebaas oleks t[hi enne testimist
+            _context.Applications.RemoveRange(_context.Applications); //clean database
             _context.SaveChanges();
 
             _context.Applications.AddRange(
                 a1, a2, a3, a4 
             );
             _context.SaveChanges();
-            applicationsCheckList = new List<Application> { a1, a4, a2 }; //in correct order
+            applicationsCheckList = new List<Application> { a1, a4, a2 }; 
 
             var result = _controller.GetApplications();
 
-            var actionResult = Assert.IsType<OkObjectResult>(result); //kontrollib kas tagastatakse http 200 OK
-            var returnedApplications = Assert.IsType<List<Application>>(actionResult.Value); //kas tagastatakse list
-            returnedApplications.Should().BeEquivalentTo(applicationsCheckList, options => options.WithStrictOrdering()); //kas listide objektid on samas j'rjekorras ja samad
+            var actionResult = Assert.IsType<OkObjectResult>(result);
+            var returnedApplications = Assert.IsType<List<Application>>(actionResult.Value);
+            returnedApplications.Should().BeEquivalentTo(applicationsCheckList, options => options.WithStrictOrdering()); 
         }
 
         [Fact]
         public void GetApplications_NoApplications_ReturnsEmptyList() {
-            _context.Applications.RemoveRange(_context.Applications); //et andmebaas oleks t[hi enne testimist
+            _context.Applications.RemoveRange(_context.Applications); 
             _context.SaveChanges();
 
             var result = _controller.GetApplications();
 
-            var actionResult = Assert.IsType<OkObjectResult>(result); //kontrollib kas tagastatakse http 200 OK
-            var returnedApplications = Assert.IsType<List<Application>>(actionResult.Value); //kas tagastatakse list
-            returnedApplications.Should().BeEquivalentTo(applicationsCheckList, options => options.WithStrictOrdering()); //m]lemad listid peavad olema t[hjad]
+            var actionResult = Assert.IsType<OkObjectResult>(result); 
+            var returnedApplications = Assert.IsType<List<Application>>(actionResult.Value);
+            returnedApplications.Should().BeEquivalentTo(applicationsCheckList, options => options.WithStrictOrdering()); 
         }
 
         [Fact]
         public void SolveApplication_Successful()
         {
-            _context.Applications.RemoveRange(_context.Applications); //et andmebaas oleks t[hi enne testimist
+            _context.Applications.RemoveRange(_context.Applications);
             _context.SaveChanges();
 
             _context.Applications.AddRange(
@@ -129,7 +129,7 @@ namespace Backend.Tests
             );
             _context.SaveChanges();
 
-            var result = _controller.SolveApplication(2); //this is already solved application
+            var result = _controller.SolveApplication(2); 
 
             var actionResult = Assert.IsType<BadRequestObjectResult>(result);
         }
@@ -137,7 +137,7 @@ namespace Backend.Tests
         [Fact]
         public void SolveApplication_ApplicationNotFound_ReturnsNotFound()
         {
-            _context.Applications.RemoveRange(_context.Applications); //et andmebaas oleks t[hi enne testimist
+            _context.Applications.RemoveRange(_context.Applications); 
             _context.SaveChanges();
 
             _context.Applications.AddRange(
@@ -158,7 +158,7 @@ namespace Backend.Tests
             };
 
             var response = _controller.AddApplication(application);
-            var actionResult = Assert.IsType<OkObjectResult>(response); //kas tagastatakse 200 staatus
+            var actionResult = Assert.IsType<OkObjectResult>(response);
 
             // Deserialize the response directly to the expected type
             var resultData = System.Text.Json.JsonSerializer.Deserialize<ApiResponse>(System.Text.Json.JsonSerializer.Serialize(actionResult.Value));
@@ -169,9 +169,9 @@ namespace Backend.Tests
             Application returnedApplication = resultData.Application;
 
             var lastApplicationFromDatabase = _context.Applications.ToList().Last();
-            returnedApplication.Should().BeEquivalentTo(lastApplicationFromDatabase); //kas viimane application andmebaasis ja tagastatud application on samad
+            returnedApplication.Should().BeEquivalentTo(lastApplicationFromDatabase); 
 
-            returnedApplication.Should().BeEquivalentTo(application); //kas tagastatud application ja algselt lisatav application on samad
+            returnedApplication.Should().BeEquivalentTo(application);
         }
 
         
@@ -183,9 +183,8 @@ namespace Backend.Tests
             };
 
             var response = _controller.AddApplication(application);
-            var actionResult = Assert.IsType<OkObjectResult>(response); //kas tagastatakse 200 staatus
+            var actionResult = Assert.IsType<OkObjectResult>(response); 
 
-            // Deserialize the response directly to the expected type
             var resultData = System.Text.Json.JsonSerializer.Deserialize<ApiResponse>(System.Text.Json.JsonSerializer.Serialize(actionResult.Value));
 
             Assert.NotNull(resultData);
@@ -193,13 +192,13 @@ namespace Backend.Tests
 
             Application returnedApplication = resultData.Application;
 
-            Assert.Equal(DateTime.Now, returnedApplication.EntryDate, precision: TimeSpan.FromSeconds(1)); //kas entryDate on sama mis praegune date ja time
+            Assert.Equal(DateTime.Now, returnedApplication.EntryDate, precision: TimeSpan.FromSeconds(1)); 
         }
 
         [Fact]
         public void AddApplication_IdIsNotUnique_ReturnsBadRequest()
         {
-            _context.Applications.RemoveRange(_context.Applications); //et andmebaas oleks t[hi enne testimist
+            _context.Applications.RemoveRange(_context.Applications); 
             _context.SaveChanges();
 
             Application application = new Application() {
@@ -217,8 +216,8 @@ namespace Backend.Tests
             };
 
             var response = _controller.AddApplication(application2);
-            var actionResult = Assert.IsType<BadRequestObjectResult>(response); //kas tagastatakse 400 status
-            Assert.Equal(1, _context.Applications.ToList().Count); //andmebaasis on ainult 1
+            var actionResult = Assert.IsType<BadRequestObjectResult>(response);
+            Assert.Equal(1, _context.Applications.ToList().Count); 
             Assert.Equal("This is a new application", _context.Applications.ToList().Last().Description);
         }
 
@@ -226,7 +225,7 @@ namespace Backend.Tests
         [Fact]
         public void AddApplication_ResolutionDateIsPast_ReturnsBadRequest()
         {
-            _context.Applications.RemoveRange(_context.Applications); //et andmebaas oleks t[hi enne testimist
+            _context.Applications.RemoveRange(_context.Applications);
             _context.SaveChanges();
 
             Application application = new Application() {
@@ -235,30 +234,30 @@ namespace Backend.Tests
             };
 
             var response = _controller.AddApplication(application);
-            var actionResult = Assert.IsType<BadRequestObjectResult>(response); //kas tagastatakse 400 status
-            Assert.Empty(_context.Applications.ToList()); //andmebaas on tyhi
+            var actionResult = Assert.IsType<BadRequestObjectResult>(response); 
+            Assert.Empty(_context.Applications.ToList());
         }
 
         [Fact]
         public void AddApplication_DescriptionIsEmpty_ReturnsBadRequest()
         {
-            _context.Applications.RemoveRange(_context.Applications); //et andmebaas oleks t[hi enne testimist
+            _context.Applications.RemoveRange(_context.Applications); 
             _context.SaveChanges();
 
             Application application = new Application() {
-                Description = "", //empty
+                Description = "", 
                 ResolutionDate = new DateTime(2025,12,12) 
             };
 
             var response = _controller.AddApplication(application);
-            var actionResult = Assert.IsType<BadRequestObjectResult>(response); //kas tagastatakse 400 status
-            Assert.Empty(_context.Applications.ToList()); //andmebaas on tyhi
+            var actionResult = Assert.IsType<BadRequestObjectResult>(response); 
+            Assert.Empty(_context.Applications.ToList()); 
         }
 
         [Fact]
         public void AddApplication_DescriptionIsTooLong_ReturnsBadRequest()
         {
-            _context.Applications.RemoveRange(_context.Applications); //et andmebaas oleks t[hi enne testimist
+            _context.Applications.RemoveRange(_context.Applications); 
             _context.SaveChanges();
 
             Application application = new Application() {
@@ -273,8 +272,8 @@ namespace Backend.Tests
             };
 
             var response = _controller.AddApplication(application);
-            var actionResult = Assert.IsType<BadRequestObjectResult>(response); //kas tagastatakse 400 status
-            Assert.Empty(_context.Applications.ToList()); //andmebaas on tyhi
+            var actionResult = Assert.IsType<BadRequestObjectResult>(response); 
+            Assert.Empty(_context.Applications.ToList()); 
         }
 
     }
